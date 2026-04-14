@@ -14,8 +14,7 @@ final class Answer {
         self.wordId = wordId
         self.wordText = wordText
         self.typed = typed
-        // Case-insensitive, accent-sensitive comparison
-        self.correct = typed.trimmingCharacters(in: .whitespaces).lowercased()
-            == wordText.trimmingCharacters(in: .whitespaces).lowercased()
+        // Case-insensitive, accent-sensitive; apostrophe variants are normalised
+        self.correct = typed.normalizedForDictation == wordText.normalizedForDictation
     }
 }

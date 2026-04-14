@@ -26,6 +26,7 @@
 		CDD2799ECE6D8D06475B27FC /* DicteeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBB193E5CCA6ACCF54264 /* DicteeApp.swift */; };
 		DBDADA03E0327E41EB9C287A /* ReviewBankEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD65B115B7B736C431DC142 /* ReviewBankEntry.swift */; };
 		DE03A0B2B489B56062D9C066 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34635A204A57A740FB78894E /* ResultsView.swift */; };
+		E214619B6623FCEFD73CF8C6 /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36283553579B91B08CE6D87C /* String+Normalization.swift */; };
 		EB5914FF0496558B77D391D3 /* ImportFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87160EFC86BEB9D091AA5DBA /* ImportFlowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		0BD65B115B7B736C431DC142 /* ReviewBankEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBankEntry.swift; sourceTree = "<group>"; };
 		0F1F0C6635ED12D6526AB6AD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		34635A204A57A740FB78894E /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		36283553579B91B08CE6D87C /* String+Normalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		6814ED42C59543D2E17618A9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7722B8088813368835434C02 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		7F3D80FF319FB4E124AA4159 /* SessionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResult.swift; sourceTree = "<group>"; };
@@ -63,12 +65,21 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		17E409CB1913E9D4F6C12A3E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36283553579B91B08CE6D87C /* String+Normalization.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		23C04615174EFE538140FA67 /* Dictee */ = {
 			isa = PBXGroup;
 			children = (
 				B5B79318408C96C69B24A985 /* Assets.xcassets */,
 				8D4DBB193E5CCA6ACCF54264 /* DicteeApp.swift */,
 				884DFD2E2CB78314A5980720 /* Info.plist */,
+				17E409CB1913E9D4F6C12A3E /* Extensions */,
 				D312AC265B4E9E679E76C504 /* Models */,
 				76540783F996F8C3A11EDE27 /* Services */,
 				D89B3DD18436001F4BE35025 /* Views */,
@@ -191,7 +202,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 0B8F5245C0315715EF2AE523 /* Build configuration list for PBXProject "Dictee" */;
 			developmentRegion = en;
@@ -243,6 +254,7 @@
 				0D29D17F59A9EA7971D0FC14 /* SessionWord.swift in Sources */,
 				6261EBA5D0EDFE59DB214C54 /* SettingsView.swift in Sources */,
 				C2A635859BC1AE13FEAD8CD2 /* SpeechService.swift in Sources */,
+				E214619B6623FCEFD73CF8C6 /* String+Normalization.swift in Sources */,
 				9CF652EBE3A1ABD0228E59E9 /* Word.swift in Sources */,
 				27F150DEB17C64472B5854FF /* WordList.swift in Sources */,
 				171FF9788B50A457F939316C /* WordListCard.swift in Sources */,
@@ -259,6 +271,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93SH436384;
 				INFOPLIST_FILE = Dictee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -279,6 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93SH436384;
 				INFOPLIST_FILE = Dictee/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -297,7 +311,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -329,10 +342,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 93SH436384;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -353,7 +364,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -364,7 +374,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -396,10 +405,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 93SH436384;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -413,7 +420,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

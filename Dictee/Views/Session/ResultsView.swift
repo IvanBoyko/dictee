@@ -150,7 +150,6 @@ struct ResultsView: View {
     // MARK: - Helpers
 
     private func isCorrect(_ typed: String, expected: String) -> Bool {
-        typed.trimmingCharacters(in: .whitespaces).lowercased()
-            == expected.trimmingCharacters(in: .whitespaces).lowercased()
+        typed.normalizedForDictation == expected.normalizedForDictation
     }
 }
