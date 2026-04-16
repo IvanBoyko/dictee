@@ -2,6 +2,8 @@ import SwiftUI
 
 struct WordListCard: View {
     let list: WordList
+    /// Score from the most recent practice session (nil = never practised).
+    let lastScore: Double?
 
     var body: some View {
         HStack(spacing: 14) {
@@ -25,9 +27,7 @@ struct WordListCard: View {
 
             Spacer(minLength: 0)
 
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
+            ScoreRing(percentage: lastScore)
         }
         .padding()
         .background(Color(.secondarySystemGroupedBackground))

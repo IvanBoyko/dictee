@@ -14,6 +14,7 @@
 		27F150DEB17C64472B5854FF /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08860A2D3DFEF16A2E33A9 /* WordList.swift */; };
 		2D5F82CE0065DEDEEEE5F191 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7722B8088813368835434C02 /* Answer.swift */; };
 		3484C8F3B811D54C1C4F1584 /* RevisitSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0403C6CB36831CA8A6F1033 /* RevisitSessionView.swift */; };
+		4465B88CB147AAD0DFC9EF88 /* ScoreRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CD19E6CD49939F788633C1 /* ScoreRing.swift */; };
 		6261EBA5D0EDFE59DB214C54 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6814ED42C59543D2E17618A9 /* SettingsView.swift */; };
 		632699888BB61F598F3E7F47 /* OCRReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7224275A61915BDDF7C988 /* OCRReviewView.swift */; };
 		63E215A05B1DAF82FE766AB3 /* DictationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4E2A0A3D4694A525CFB25 /* DictationTextField.swift */; };
@@ -48,7 +49,7 @@
 		9C1241FB31451154161B3CC7 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		A2C5F1F3266B8C11B7552D1C /* WordListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListCard.swift; sourceTree = "<group>"; };
 		A30CF2FA6851BB9E96520385 /* WordListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListDetailView.swift; sourceTree = "<group>"; };
-		A9589F1FDACCA397900E84C3 /* Dictee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9589F1FDACCA397900E84C3 /* Dictee.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Dictee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7224275A61915BDDF7C988 /* OCRReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRReviewView.swift; sourceTree = "<group>"; };
 		B5B79318408C96C69B24A985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3FFE30FF920EE478E43516E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -56,6 +57,7 @@
 		E0403C6CB36831CA8A6F1033 /* RevisitSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisitSessionView.swift; sourceTree = "<group>"; };
 		ED08860A2D3DFEF16A2E33A9 /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		F4EA0A8C76D5C6082D30F83C /* SessionWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWord.swift; sourceTree = "<group>"; };
+		F7CD19E6CD49939F788633C1 /* ScoreRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				D3FFE30FF920EE478E43516E /* HomeView.swift */,
+				F7CD19E6CD49939F788633C1 /* ScoreRing.swift */,
 				A2C5F1F3266B8C11B7552D1C /* WordListCard.swift */,
 			);
 			path = Home;
@@ -206,6 +209,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					7D3CB48D893FB207303E1C43 = {
+						DevelopmentTeam = 93SH436384;
+					};
+				};
 			};
 			buildConfigurationList = 0B8F5245C0315715EF2AE523 /* Build configuration list for PBXProject "Dictee" */;
 			developmentRegion = en;
@@ -253,6 +261,7 @@
 				DE03A0B2B489B56062D9C066 /* ResultsView.swift in Sources */,
 				DBDADA03E0327E41EB9C287A /* ReviewBankEntry.swift in Sources */,
 				3484C8F3B811D54C1C4F1584 /* RevisitSessionView.swift in Sources */,
+				4465B88CB147AAD0DFC9EF88 /* ScoreRing.swift in Sources */,
 				9B7471C5E0E05574E96F166B /* SessionResult.swift in Sources */,
 				ACB2FC6F777C978499290ED4 /* SessionView.swift in Sources */,
 				0D29D17F59A9EA7971D0FC14 /* SessionWord.swift in Sources */,

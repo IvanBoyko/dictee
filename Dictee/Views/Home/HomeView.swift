@@ -5,6 +5,12 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \WordList.createdAt, order: .reverse) private var lists: [WordList]
     @Query private var reviewBank: [ReviewBankEntry]
+    /// All practice (non-revisit) sessions, newest first.
+    @Query(
+        filter: #Predicate<SessionResult> { !$0.isRevisit },
+        sort: \SessionResult.date,
+        order: .reverse
+    ) private var practiceSessions: [SessionResult]
 
     @State private var showImport = false
     @State private var practiceList: WordList?
@@ -87,7 +93,7 @@ struct HomeView: View {
                 spacing: 12
             ) {
                 ForEach(lists) { list in
-                    WordListCard(list: list)
+                    WordListCard(list: list, lastScore: lastScore(for: list))
                         .contentShape(RoundedRectangle(cornerRadius: 16))
                         .onTapGesture { practiceList = list }
                         .contextMenu {
@@ -107,6 +113,16 @@ struct HomeView: View {
             .padding()
             .padding(.bottom, 80) // room for revisit banner
         }
+    }
+
+    // MARK: - Helpers
+
+    /// Returns 0…1 score from the most recent practice session for `list`,
+    /// or nil if the list has never been practised.
+    private func lastScore(for list: WordList) -> Double? {
+        guard let session = practiceSessions.first(where: { $0.listId == list.id }),
+              session.total > 0 else { return nil }
+        return Double(session.correctCount) / Double(session.total)
     }
 
     private var revisitBanner: some View {

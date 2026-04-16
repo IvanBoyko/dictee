@@ -23,8 +23,22 @@ A French dictation learning app for pupils, targeting iPhone and iPad. The teach
 - Shows all saved word lists as a scrollable grid of cards, each displaying:
   - Thumbnail of the original photo
   - Name (auto-generated from import date, editable)
-  - Word count
+  - Word count, accompanied by a **score ring** (see below)
   - Last practiced date (relative, e.g. "2 hours ago")
+
+**Score ring** — a small circular progress arc with the percentage printed in the centre, shown next to the word count, reflecting the score from the most recent Practice Session for that list:
+
+| Score | Ring colour |
+|---|---|
+| > 80% correct | Green |
+| 50 – 80% correct | Amber |
+| < 50% correct | Red |
+| Never practised | Gray (0% fill) |
+
+- The arc fill corresponds to the percentage (e.g. 75% correct → ring three-quarters full)
+- The percentage number is displayed inside the ring (e.g. "87%")
+- Score is taken from the last **Practice Session** for that specific list; Revisit sessions do not affect it
+- A never-practised list shows a gray empty ring with no percentage label
 - Toolbar: **⚙ Settings** (top-left), **+ Add New List** (top-right)
 - When the Review Bank is non-empty, an orange **Revisit · N words** banner appears pinned at the bottom; it is hidden entirely when the bank is empty
 - Tapping a card immediately starts a Practice Session for that list
