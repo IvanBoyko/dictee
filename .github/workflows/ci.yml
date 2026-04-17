@@ -37,4 +37,5 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
+            ASSETCATALOG_COMPILER_OPTIMIZATION=nothing \
             | xcpretty
