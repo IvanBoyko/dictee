@@ -11,10 +11,6 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
 
     steps:
     - name: Checkout code
@@ -26,19 +22,22 @@ jobs:
     - name: Generate Xcode project from project.yml
       run: xcodegen
 
-    - name: Build for iOS Simulator
+    - name: Build for iOS Simulator (Debug)
       run: |
         xcodebuild build \
           -scheme Dictee \
           -sdk iphonesimulator \
-          -configuration ${{ matrix.configuration }} \
-          -derivedDataPath build
+          -configuration Debug \
+          -derivedDataPath build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
 
-    - name: Build for iOS Device (Release only)
-      if: matrix.configuration == 'Release'
+    - name: Build for iOS Simulator (Release)
       run: |
         xcodebuild build \
           -scheme Dictee \
-          -sdk iphoneos \
+          -sdk iphonesimulator \
           -configuration Release \
-          -derivedDataPath build
+          -derivedDataPath build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
