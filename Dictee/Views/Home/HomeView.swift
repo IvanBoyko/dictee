@@ -54,18 +54,22 @@ struct HomeView: View {
                     revisitBanner
                 }
             }
-            .confirmationDialog(
-                "How do you want to practise?",
-                isPresented: $showSessionPicker
-            ) {
-                Button("Type your answers") {
-                    if let list = pendingList { practiceList = list }
-                    pendingList = nil
-                }
-                Button("Write on paper") {
-                    if let list = pendingList { paperList = list }
-                    pendingList = nil
-                }
+        }
+        .sheet(isPresented: $showSessionPicker, onDismiss: { pendingList = nil }) {
+            if let list = pendingList {
+                SessionModePicker(
+                    heading: list.name,
+                    onTyped: {
+                        practiceList = list
+                        pendingList = nil
+                        showSessionPicker = false
+                    },
+                    onPaper: {
+                        paperList = list
+                        pendingList = nil
+                        showSessionPicker = false
+                    }
+                )
             }
         }
         .sheet(isPresented: $showImport) {
@@ -81,7 +85,16 @@ struct HomeView: View {
             )
         }
         .sheet(item: $paperList) { list in
-            PaperSessionView(list: list)
+            PaperSessionView(
+                words: list.words.map { SessionWord(id: $0.id, text: $0.text) },
+                title: list.name,
+                listId: list.id,
+                isRevisit: false,
+                onNeatnessSaved: { neatness in
+                    list.handwritingNeatness = neatness
+                    list.lastPracticedAt = Date()
+                }
+            )
         }
         .sheet(isPresented: $showRevisit) {
             RevisitSessionView()

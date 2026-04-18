@@ -19,6 +19,7 @@
 		6261EBA5D0EDFE59DB214C54 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6814ED42C59543D2E17618A9 /* SettingsView.swift */; };
 		632699888BB61F598F3E7F47 /* OCRReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7224275A61915BDDF7C988 /* OCRReviewView.swift */; };
 		63E215A05B1DAF82FE766AB3 /* DictationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4E2A0A3D4694A525CFB25 /* DictationTextField.swift */; };
+		7D93EDCFC95DFC535DDD314E /* SessionModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D3155D2F2AFB87C9D7BDCA /* SessionModePicker.swift */; };
 		7E6BA62B91C7158C4307E7E3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1F0C6635ED12D6526AB6AD /* CameraView.swift */; };
 		921DD3B3B77201F33BA4B364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B79318408C96C69B24A985 /* Assets.xcassets */; };
 		98F7DDBE6503C70FCA199B0D /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99804FC519CDA0887F364BDC /* OCRService.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		0BD65B115B7B736C431DC142 /* ReviewBankEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBankEntry.swift; sourceTree = "<group>"; };
 		0F1F0C6635ED12D6526AB6AD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		20D3155D2F2AFB87C9D7BDCA /* SessionModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModePicker.swift; sourceTree = "<group>"; };
 		34635A204A57A740FB78894E /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		36283553579B91B08CE6D87C /* String+Normalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		49DF43F4A27E38EC1E3808F1 /* PaperSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSessionView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				49DF43F4A27E38EC1E3808F1 /* PaperSessionView.swift */,
 				34635A204A57A740FB78894E /* ResultsView.swift */,
 				E0403C6CB36831CA8A6F1033 /* RevisitSessionView.swift */,
+				20D3155D2F2AFB87C9D7BDCA /* SessionModePicker.swift */,
 				92D1AF5BA5B49A82D4B6EE57 /* SessionView.swift */,
 				F4EA0A8C76D5C6082D30F83C /* SessionWord.swift */,
 			);
@@ -270,6 +273,7 @@
 				DBDADA03E0327E41EB9C287A /* ReviewBankEntry.swift in Sources */,
 				3484C8F3B811D54C1C4F1584 /* RevisitSessionView.swift in Sources */,
 				4465B88CB147AAD0DFC9EF88 /* ScoreRing.swift in Sources */,
+				7D93EDCFC95DFC535DDD314E /* SessionModePicker.swift in Sources */,
 				9B7471C5E0E05574E96F166B /* SessionResult.swift in Sources */,
 				ACB2FC6F777C978499290ED4 /* SessionView.swift in Sources */,
 				0D29D17F59A9EA7971D0FC14 /* SessionWord.swift in Sources */,

@@ -103,7 +103,24 @@ Triggered from Home → tap a word list card → **"Type your answers"**.
 5. This continues until all words are exhausted
 
 **End of session — Results Screen:**
-- Score shown prominently (e.g. "14 / 17") with a contextual label ("Perfect!", "Excellent", "Good job", etc.)
+- Score shown prominently (e.g. "14 / 17"), coloured by ratio:
+
+| Ratio | Colour |
+|---|---|
+| ≥ 90% correct | Green |
+| ≥ 60% correct | Orange |
+| < 60% correct | Red |
+
+- Contextual label beneath the score:
+
+| Ratio | Label |
+|---|---|
+| 100% | "Perfect!" |
+| ≥ 90% | "Excellent" |
+| ≥ 70% | "Good job" |
+| ≥ 50% | "Keep practising" |
+| < 50% | "Don't give up!" |
+
 - Two sections: **Correct ✓** (green) and **Needs work ✗** (red)
 - Each incorrect entry shows the correct word and "You wrote: [what the pupil typed]"
 - Incorrect words are automatically added to the Review Bank (miss count incremented if already present)
@@ -141,11 +158,16 @@ The pupil hears every word, writes answers on a sheet of paper, then photographs
 
 ### 5. Revisit Session
 
-Triggered from the orange Revisit banner on Home.
+Triggered from the orange Revisit banner on Home → shows a **mode picker** ("Type your answers" / "Write on paper") before starting.
 
-- Works identically to a Typed Practice Session, but the word pool is drawn from the Review Bank (across all lists), sorted oldest-added first
-- Session size is capped (default 20, configurable in Settings)
-- Words answered **correctly** in this session are removed from the Review Bank immediately
+The word pool is always drawn from the Review Bank (across all lists), sorted oldest-added first, capped at the configured session size (default 20).
+
+**Typed Revisit** — works identically to the Typed Practice Session, using the Review Bank as the word pool.
+
+**Paper Revisit** — works identically to the Paper Dictation Session (dictation → capture → OCR → results), using the Review Bank as the word pool. Neatness is shown in the results screen but is **not** saved to any individual word list (the words come from multiple lists).
+
+Rules common to both modes:
+- Words answered **correctly** are removed from the Review Bank immediately
 - Words answered **incorrectly** remain in the Review Bank
 - End screen shows the same Correct/Incorrect breakdown, plus: "X words removed from your review list"
 

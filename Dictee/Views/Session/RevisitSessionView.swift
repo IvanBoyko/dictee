@@ -11,6 +11,9 @@ struct RevisitSessionView: View {
     /// re-render that would tear down SessionView / ResultsView mid-session.
     @State private var snapshot: [SessionWord]? = nil
 
+    enum SessionMode { case typed, paper }
+    @State private var selectedMode: SessionMode? = nil
+
     var body: some View {
         Group {
             if let words = snapshot {
@@ -22,16 +25,32 @@ struct RevisitSessionView: View {
                         description: Text("All caught up! Keep practising your word lists.")
                     )
                 } else {
-                    // onComplete is intentionally omitted: the sheet is dismissed by
-                    // the "Back to Home" button in ResultsView → SessionView.dismiss().
-                    // Passing dismiss() here caused it to fire before showResults = true,
-                    // making the results screen never appear.
-                    SessionView(
-                        words: words,
-                        title: "Revisit",
-                        listId: nil,
-                        isRevisit: true
-                    )
+                    switch selectedMode {
+                    case .none:
+                        SessionModePicker(
+                            heading: "Revisit · \(words.count) \(words.count == 1 ? "word" : "words")",
+                            onTyped: { selectedMode = .typed },
+                            onPaper:  { selectedMode = .paper }
+                        )
+                    case .typed:
+                        // onComplete is intentionally omitted: the sheet is dismissed by
+                        // the "Back to Home" button in ResultsView → dismiss().
+                        SessionView(
+                            words: words,
+                            title: "Revisit",
+                            listId: nil,
+                            isRevisit: true
+                        )
+                    case .paper:
+                        // Neatness is shown in results but not persisted (words span
+                        // multiple lists), so onNeatnessSaved is omitted.
+                        PaperSessionView(
+                            words: words,
+                            title: "Revisit",
+                            listId: nil,
+                            isRevisit: true
+                        )
+                    }
                 }
             }
             // snapshot == nil: empty Group for one frame until onAppear fires.
@@ -43,4 +62,6 @@ struct RevisitSessionView: View {
             }
         }
     }
+
+
 }

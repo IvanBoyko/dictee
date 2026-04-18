@@ -6,11 +6,22 @@ import SwiftUI
 /// 3. **Processing** — on-device OCR recognises the handwritten words.
 /// 4. **Results**   — recognised words are matched positionally to the dictated
 ///                    order and compared to the truth list. Neatness score (OCR
-///                    confidence) is shown and saved to the word list.
+///                    confidence) is shown in the results screen.
+///
+/// Works for both word-list sessions and revisit sessions; callers control
+/// persistence via the `onNeatnessSaved` closure.
 struct PaperSessionView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let list: WordList
+    let words: [SessionWord]
+    let title: String
+    let listId: UUID?
+    let isRevisit: Bool
+    /// Called after OCR completes (before results appear) with the neatness score.
+    /// Word-list callers use this to persist `handwritingNeatness` and
+    /// `lastPracticedAt`. Revisit callers omit it — neatness is shown but not
+    /// saved to any individual list.
+    var onNeatnessSaved: ((Double) -> Void)? = nil
 
     // MARK: - Phase
 
@@ -40,9 +51,9 @@ struct PaperSessionView: View {
             case .results:
                 ResultsView(
                     answers: answers,
-                    title: list.name,
-                    listId: list.id,
-                    isRevisit: false,
+                    title: title,
+                    listId: listId,
+                    isRevisit: isRevisit,
                     isPaperSession: true,
                     handwritingNeatness: neatnessScore,
                     onPracticeAgain: restart,
@@ -118,7 +129,7 @@ struct PaperSessionView: View {
                 .padding()
             }
             .padding(.top, 8)
-            .navigationTitle(list.name)
+            .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -185,9 +196,7 @@ struct PaperSessionView: View {
     // MARK: - Actions
 
     private func start() {
-        shuffled = list.words
-            .map { SessionWord(id: $0.id, text: $0.text) }
-            .shuffled()
+        shuffled = words.shuffled()
         currentIndex = 0
         neatnessScore = nil
         speakCurrent(after: 0.5)
@@ -228,11 +237,7 @@ struct PaperSessionView: View {
                     return (word: word, typed: typed)
                 }
                 neatnessScore = result.averageConfidence
-
-                // Persist neatness and practice date on the word list.
-                list.handwritingNeatness = result.averageConfidence
-                list.lastPracticedAt = Date()
-
+                onNeatnessSaved?(result.averageConfidence)
                 phase = .results
             }
         }
