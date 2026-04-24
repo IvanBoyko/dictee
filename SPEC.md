@@ -201,7 +201,7 @@ Accessible via the ⚙ toolbar button on Home.
 | `Word` | id, text, list → WordList |
 | `ReviewBankEntry` | id, wordId, wordText (denormalized), addedAt, missCount |
 | `SessionResult` | id, listId, listName, date, isRevisit, isPaperSession, answers[] |
-| `Answer` | id, wordId, wordText (denormalized), typed, correct, session → SessionResult |
+| `Answer` | id, wordId, wordText (denormalized), typed, session → SessionResult — `correct` is **computed** (`typed.normalizedForDictation == wordText.normalizedForDictation`), not stored |
 
 `WordList.handwritingNeatness` is updated after each paper session (most recent value wins), analogous to `lastPracticedAt`. It is `nil` for lists that have only been practised in typed mode.
 
