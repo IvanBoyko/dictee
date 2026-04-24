@@ -25,11 +25,11 @@ struct PaperSessionView: View {
 
     // MARK: - Phase
 
-    enum Phase { case dictation, capture, processing, results }
+    enum Phase { case intro, dictation, capture, processing, results }
 
     // MARK: - State
 
-    @State private var phase: Phase = .dictation
+    @State private var phase: Phase = .intro
     @State private var speech = SpeechService()
     @State private var shuffled: [SessionWord] = []
     @State private var currentIndex = 0
@@ -42,6 +42,8 @@ struct PaperSessionView: View {
     var body: some View {
         Group {
             switch phase {
+            case .intro:
+                introContent
             case .dictation:
                 dictationContent
             case .capture:
@@ -61,7 +63,7 @@ struct PaperSessionView: View {
                 )
             }
         }
-        .onAppear(perform: start)
+        .onAppear(perform: prepare)
         .onDisappear { speech.stop() }
         .fullScreenCover(isPresented: $showCamera) {
             CameraView(
@@ -74,6 +76,60 @@ struct PaperSessionView: View {
                 }
             )
             .ignoresSafeArea()
+        }
+    }
+
+    // MARK: - Intro phase
+
+    private var introContent: some View {
+        NavigationStack {
+            VStack(spacing: 28) {
+                Spacer()
+
+                Text("Write your answers like this")
+                    .font(.title2.weight(.semibold))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+
+                VStack(spacing: 8) {
+                    Text("Example")
+                        .font(.caption.weight(.medium))
+                        .foregroundStyle(.secondary)
+                        .textCase(.uppercase)
+
+                    Image("ListFormatExample")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 360, maxHeight: 220)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .strokeBorder(Color(.separator), lineWidth: 1)
+                        )
+                }
+                .padding(.horizontal)
+
+                Spacer()
+
+                Button(action: beginDictation) {
+                    Text("Start")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+            }
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") { dismiss() }
+                }
+            }
         }
     }
 
@@ -195,16 +251,20 @@ struct PaperSessionView: View {
 
     // MARK: - Actions
 
-    private func start() {
+    private func prepare() {
         shuffled = words.shuffled()
         currentIndex = 0
         neatnessScore = nil
-        speakCurrent(after: 0.5)
+    }
+
+    private func beginDictation() {
+        phase = .dictation
+        speakCurrent(after: 0.3)
     }
 
     private func restart() {
-        phase = .dictation
-        start()
+        prepare()
+        beginDictation()
     }
 
     private func speakCurrent(after delay: TimeInterval = 0) {
