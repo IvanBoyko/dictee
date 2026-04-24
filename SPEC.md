@@ -64,7 +64,7 @@ A French dictation learning app for pupils, targeting iPhone and iPad. The teach
 ### 2. Import Flow
 
 **Step 1 — Capture**
-- Tap "+ Add New List" → the capture screen shows the instructions and an **Example** card with a sample handwritten list (comma- and newline-separated entries, including multi-word phrases)
+- Tap "+ Add New List" → camera opens
 - User photographs the paper word list
 - Option to choose an existing photo from the library instead
 
@@ -137,16 +137,17 @@ The pupil hears every word, writes answers on a sheet of paper, then photographs
 
 **Session flow:**
 
-1. Words are shuffled randomly
-2. **Dictation phase:** For each word, the app:
+1. **Intro phase:** An "Example" card shows a sample handwritten answer sheet (comma- and newline-separated entries, including multi-word phrases) so the pupil knows how to format their writing. Tap **Start** to begin dictation.
+2. Words are shuffled randomly
+3. **Dictation phase:** For each word, the app:
    - Plays an audio pronunciation automatically (TTS, French locale)
    - Shows a large speaker button to replay at any time
    - Shows a progress bar and counter (e.g. "3 of 17")
    - **No text input** — the pupil writes on paper
    - Pupil taps **Next Word** to advance, or **Done — Take Photo** on the last word
-3. **Capture phase:** App prompts the pupil to photograph their written answer sheet
-4. **Processing:** On-device OCR (Vision framework, handwriting mode — language correction disabled) recognises the words
-5. **Matching:** Recognised words are matched positionally to the dictation order (word 1 on the photo ↔ word 1 dictated, etc.)
+4. **Capture phase:** App prompts the pupil to photograph their written answer sheet
+5. **Processing:** On-device OCR (Vision framework, handwriting mode — language correction disabled) recognises the words
+6. **Matching:** Recognised words are matched positionally to the dictation order (word 1 on the photo ↔ word 1 dictated, etc.)
 
 **End of session — Results Screen:**
 - Same Correct / Needs work layout as the typed session
