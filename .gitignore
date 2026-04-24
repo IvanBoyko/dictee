@@ -67,3 +67,6 @@ fastlane/test_output
 !.claude/settings.json
 .claude/settings.local.json
 .claude/worktrees/
+
+# Per-developer CLAUDE overrides (team ID, devices, permissions)
+CLAUDE.local.md

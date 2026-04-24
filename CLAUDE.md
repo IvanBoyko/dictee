@@ -2,6 +2,11 @@
 
 Project-specific rules and context for Claude Code. Read this before touching any file.
 
+Personal or machine-specific settings (Apple team ID, physical test devices,
+standing permission grants, working-directory preferences) live in
+`CLAUDE.local.md`, which is **not** checked in. Copy from a teammate or create
+your own if it's missing — Claude Code loads both files when present.
+
 ---
 
 ## Project overview
@@ -10,20 +15,6 @@ Project-specific rules and context for Claude Code. Read this before touching an
 Pupils photograph a teacher's paper word list, then practise spelling through typed or paper dictation sessions.
 
 Full spec: [`SPEC.md`](SPEC.md) — keep it in sync whenever behaviour changes (see rule below).
-
----
-
-## Permissions
-
-Claude has standing approval to execute the following immediately, without any confirmation prompt or tool-approval dialog:
-- All read operations: `git diff`, `git log`, `git status`, `git show`
-- Branch management: `git checkout`, `git checkout -b`, `git pull`, `git fetch`
-- Staging and committing: `git add`, `git commit`
-- Pushing: `git push origin <branch>` (including `main`)
-
-This includes chained commands such as `git add X && git commit -m "..." && git push origin main`. Run them in a single Bash call without pausing to ask.
-
-Destructive operations (`git push --force`, `git reset --hard`, branch deletion) still require explicit user instruction.
 
 ---
 
@@ -36,8 +27,9 @@ Never edit `Dictee.xcodeproj` by hand — all structural changes go in `project.
 # Regenerate the project after any project.yml change
 xcodegen generate
 
-# Build for simulator (no signing required)
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
+# Build for simulator (no signing required). Pick any available iOS 17+
+# simulator from `xcrun simctl list devices available`.
+DEVELOPER_DIR="$(xcode-select -p)" \
 xcodebuild build \
   -scheme Dictee \
   -sdk iphonesimulator \
@@ -48,19 +40,16 @@ xcodebuild build \
   CODE_SIGNING_ALLOWED=NO
 ```
 
-> **Warning — DEVELOPMENT_TEAM:** `project.yml` must always contain
-> `DEVELOPMENT_TEAM: 93SH436384` under `targets.Dictee.settings.base`.
-> xcodegen strips the team on every regeneration unless it is declared there.
-> Never remove this line.
+> **Warning — DEVELOPMENT_TEAM:** `project.yml` must declare `DEVELOPMENT_TEAM`
+> under `targets.Dictee.settings.base`, because xcodegen strips the team on
+> every regeneration unless it is declared there. The value committed in
+> `project.yml` is one developer's Apple team ID; replace it with your own
+> before building on device (record yours in `CLAUDE.local.md`).
 
 ### Physical test devices
 
-| Name | Model | Identifier |
-|---|---|---|
-| Black Knight | iPhone 14 Pro Max | `264DA990-A302-5C43-8D51-91BB11C7A1E4` |
-| iPad | iPad Pro 13-inch (M4) | `15DE8DD5-0A56-59CF-A217-143502CF0A9B` |
-
-List with: `xcrun devicectl list devices`
+List connected devices with `xcrun devicectl list devices`. Record personal
+device names and identifiers in `CLAUDE.local.md` for quick reference.
 
 ---
 
@@ -137,7 +126,7 @@ Source file: `master_icon.png` (1024×1024, full-bleed gradient, no white paddin
 Regenerate all icon sizes with ImageMagick:
 
 ```bash
-cd /path/to/repo
+# Run from the repo root
 sizes=(20 29 40 60 76 83)   # logical sizes (points); scripts produce @2x and @3x where needed
 # See commit history for the full resize/composite command set
 ```
@@ -169,12 +158,6 @@ GitHub Actions workflow: `.github/workflows/ci.yml`
 - Runner: `macos-15`, Xcode 16
 - Steps: checkout → install xcodegen → `xcodegen generate` → build for simulator (Debug)
 - Signing disabled via `CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO`
-
----
-
-## Working directory
-
-Always work directly in `/Users/Shared/git/github.com/dictee`. Create branches here with `git checkout -b`. Do **not** use Claude worktree isolation — the user works in the same directory and worktrees create unnecessary overhead.
 
 ---
 
