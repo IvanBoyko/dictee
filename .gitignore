@@ -61,3 +61,7 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 .aider*
+
+# Allow project-level Claude Code settings
+!.claude/
+!.claude/settings.json
