@@ -18,8 +18,7 @@ struct HomeView: View {
     @State private var detailList: WordList?
 
     // Session mode selection
-    @State private var pendingList: WordList?       // set on card tap; cleared after mode chosen
-    @State private var showSessionPicker = false
+    @State private var pendingList: WordList?       // drives the mode picker sheet; cleared after mode chosen
     @State private var practiceList: WordList?      // triggers typed session sheet
     @State private var paperList: WordList?         // triggers paper session sheet
 
@@ -55,22 +54,18 @@ struct HomeView: View {
                 }
             }
         }
-        .sheet(isPresented: $showSessionPicker, onDismiss: { pendingList = nil }) {
-            if let list = pendingList {
-                SessionModePicker(
-                    heading: list.name,
-                    onTyped: {
-                        practiceList = list
-                        pendingList = nil
-                        showSessionPicker = false
-                    },
-                    onPaper: {
-                        paperList = list
-                        pendingList = nil
-                        showSessionPicker = false
-                    }
-                )
-            }
+        .sheet(item: $pendingList) { list in
+            SessionModePicker(
+                heading: list.name,
+                onTyped: {
+                    practiceList = list
+                    pendingList = nil
+                },
+                onPaper: {
+                    paperList = list
+                    pendingList = nil
+                }
+            )
         }
         .sheet(isPresented: $showImport) {
             ImportFlowView()
@@ -131,7 +126,6 @@ struct HomeView: View {
                         .contentShape(RoundedRectangle(cornerRadius: 16))
                         .onTapGesture {
                             pendingList = list
-                            showSessionPicker = true
                         }
                         .contextMenu {
                             Button {
