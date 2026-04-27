@@ -21,11 +21,38 @@ enum PaperSessionMatcher {
     }
 
     static func match(ocrChunks: [String], expectedCount: Int) -> Result {
-        // TODO: implement recovery — see TODO.md.
         var typed: [String] = []
-        for i in 0..<expectedCount {
-            typed.append(i < ocrChunks.count ? ocrChunks[i] : "")
+        var i = 0
+        var j = 0
+        var deficit = expectedCount - ocrChunks.count
+        var recovered = 0
+
+        while j < expectedCount {
+            guard i < ocrChunks.count else {
+                typed.append("")
+                j += 1
+                continue
+            }
+
+            let chunk = ocrChunks[i]
+            let pieces = chunk
+                .split(whereSeparator: \.isWhitespace)
+                .map(String.init)
+
+            if pieces.count > 1 && deficit > 0 {
+                let take = min(pieces.count, expectedCount - j)
+                typed.append(contentsOf: pieces.prefix(take))
+                deficit -= (take - 1)
+                j += take
+                i += 1
+                recovered += 1
+            } else {
+                typed.append(chunk)
+                i += 1
+                j += 1
+            }
         }
-        return Result(typed: typed, recoveredChunks: 0)
+
+        return Result(typed: typed, recoveredChunks: recovered)
     }
 }

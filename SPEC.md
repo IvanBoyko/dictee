@@ -147,7 +147,7 @@ The pupil hears every word, writes answers on a sheet of paper, then photographs
    - Pupil taps **Next Word** to advance, or **Done — Take Photo** on the last word
 4. **Capture phase:** App prompts the pupil to photograph their written answer sheet
 5. **Processing:** On-device OCR (Vision framework, handwriting mode — language correction disabled) recognises the words
-6. **Matching:** Recognised words are matched positionally to the dictation order (word 1 on the photo ↔ word 1 dictated, etc.)
+6. **Matching:** Recognised words are matched positionally to the dictation order (word 1 on the photo ↔ word 1 dictated, etc.). When OCR returns fewer chunks than the dictated count and a chunk contains internal whitespace, the chunk is split greedily so each piece occupies its own position — recovering pupils who forgot a comma between answers. Each recovered chunk docks the neatness score by 0.05 (legible writing, but failed formatting).
 
 **End of session — Results Screen:**
 - Same Correct / Needs work layout as the typed session

@@ -289,15 +289,22 @@ struct PaperSessionView: View {
             let result = (try? await OCRService.recognizeText(in: image, handwriting: true))
                 ?? OCRService.OCRResult(words: [], averageConfidence: 0)
 
+            // Recover positional alignment when the pupil forgot separators
+            // and OCR merged multiple answers into one chunk. Each recovery
+            // docks neatness — legible writing, but failed formatting.
+            let matched = PaperSessionMatcher.match(
+                ocrChunks: result.words,
+                expectedCount: shuffled.count
+            )
+            let dockedNeatness = max(
+                0,
+                result.averageConfidence - 0.05 * Double(matched.recoveredChunks)
+            )
+
             await MainActor.run {
-                // Positional match: OCR word[i] ↔ dictated word[i].
-                // Words the OCR couldn't read (fewer results than expected) are treated as blank.
-                answers = shuffled.enumerated().map { i, word in
-                    let typed = i < result.words.count ? result.words[i] : ""
-                    return (word: word, typed: typed)
-                }
-                neatnessScore = result.averageConfidence
-                onNeatnessSaved?(result.averageConfidence)
+                answers = zip(shuffled, matched.typed).map { (word: $0, typed: $1) }
+                neatnessScore = dockedNeatness
+                onNeatnessSaved?(dockedNeatness)
                 phase = .results
             }
         }
