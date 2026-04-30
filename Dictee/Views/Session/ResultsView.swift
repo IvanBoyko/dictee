@@ -30,6 +30,8 @@ struct ResultsView: View {
             List {
                 scoreHeader
 
+                rewardSection
+
                 if !correctAnswers.isEmpty {
                     Section("Correct ✓") {
                         ForEach(correctAnswers, id: \.id) { answer in
@@ -57,8 +59,6 @@ struct ResultsView: View {
                         }
                     }
                 }
-
-                rewardSection
 
                 Section {
                     Button(action: onPracticeAgain) {

@@ -125,7 +125,7 @@ Triggered from Home → tap a word list card → **"Type your answers"**.
 - Each incorrect entry shows the correct word and "You wrote: [what the pupil typed]"
 - Incorrect words are automatically added to the Review Bank (miss count incremented if already present)
 - Words answered correctly here are **not** removed from the Review Bank (only Revisit sessions do that)
-- A **Stars** block appears under the answer lists — see "Stars & Rewards" below
+- A **Stars** block appears directly under the score header — see "Stars & Rewards" below
 - Buttons: **Practice Again**, **Back to Home**
 
 ---
@@ -154,7 +154,7 @@ The pupil hears every word, writes answers on a sheet of paper, then photographs
 - Same Correct / Needs work layout as the typed session
 - Additionally shows a **neatness score** (OCR confidence as a legibility proxy) with a colour-coded neatness ring
 - Incorrect words are added to the Review Bank (same rules as typed sessions)
-- A **Stars** block appears under the answer lists — see "Stars & Rewards" below
+- A **Stars** block appears directly under the score header — see "Stars & Rewards" below
 - The neatness score is saved to the word list and shown as a neatness ring on the home card
 
 ---
@@ -203,7 +203,7 @@ A small, local-first reward system intended to motivate continued practice. **No
 **Slice 1 rules:**
 - One star is awarded for each correctly written word at the end of every completed dictation session — typed, paper, and revisit alike.
 - The total balance accumulates across all sessions and persists locally on the device.
-- The result screen shows a **Stars** block under the answer lists with three lines:
+- The result screen shows a **Stars** block directly under the score header with three lines:
   - `⭐ +N stars earned` (this session)
   - `Total stars: M`
   - `🎁 Secret reward` (locked) with `M / 50 stars` and a yellow progress bar
