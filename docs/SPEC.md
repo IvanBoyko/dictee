@@ -64,9 +64,9 @@ A French dictation learning app for pupils, targeting iPhone and iPad. The teach
 ### 2. Import Flow
 
 **Step 1 — Capture**
-- Tap "+ Add New List" → camera opens
-- User photographs the paper word list
-- Option to choose an existing photo from the library instead
+- Tap "+ Add New List" to open the import sheet. The Capture step offers two options side by side:
+  - **Take Photo** — opens the camera so the pupil can photograph the paper word list
+  - **Choose from Library** — picks an existing image via the system Photos picker
 
 **Step 2 — Review & Edit**
 - App uses on-device OCR (Vision framework, `fr-FR` locale) to extract words
@@ -203,10 +203,10 @@ A small, local-first reward system intended to motivate continued practice. **No
 **Slice 1 rules:**
 - One star is awarded for each correctly written word at the end of every completed dictation session — typed, paper, and revisit alike.
 - The total balance accumulates across all sessions and persists locally on the device.
-- The result screen shows a **Stars** block directly under the score header with three lines:
-  - `⭐ +N stars earned` (this session)
-  - `Total stars: M`
-  - `🎁 Secret reward` (locked) with `M / 50 stars` and a yellow progress bar
+- The result screen shows a **Stars** block directly under the score header with three rows:
+  - `⭐ +N stars earned` — stars earned in this session
+  - A **Total stars** row, with the running balance right-aligned (e.g. `Total stars` … `48`)
+  - **🎁 Secret reward** with a lock icon, the caption `M / 50 stars`, and a yellow progress bar
 - The reward is permanently locked in Slice 1; no unlock screen or game exists yet. Future slices may introduce additional tiers and unlock experiences.
 
 **Idempotency.** Each completed session produces exactly one `RewardTransaction`, keyed by `SessionResult.id`. A re-render of the same result screen never grants stars twice. A "Practice Again" run starts a fresh session (new `SessionResult.id`) and is awarded normally.
@@ -240,7 +240,7 @@ A small, local-first reward system intended to motivate continued practice. **No
 
 **Audio is TTS, French locale.** No network dependency; uses `AVSpeechSynthesizer` with `fr-FR` voice at a slightly reduced rate for clarity.
 
-**Keyboard assistance is fully disabled during typed sessions.** Autocorrection, spell-check underlining, smart quotes, smart dashes, and the QuickType suggestion bar are all suppressed via a custom `UITextField` wrapper (`DictationTextField`). The pupil must recall and type every character entirely from memory.
+**Keyboard assistance is fully disabled during typed sessions.** Autocorrection, spell-check underlining, smart quotes, smart dashes, smart insert/delete, and the QuickType suggestion bar are all suppressed via a custom `UITextField` wrapper (`DictationTextField`). The pupil must recall and type every character entirely from memory.
 
 **Apostrophe variants are normalized before comparison.** iOS Smart Punctuation substitutes a curly right single quotation mark (U+2019) when the pupil types an apostrophe. The comparison folds U+2019, U+2018, and U+02BC to a plain straight apostrophe (U+0027) on both sides before comparing, so words like *l'enfance* are never incorrectly marked wrong due to apostrophe style.
 
