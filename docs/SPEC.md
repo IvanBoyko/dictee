@@ -53,7 +53,7 @@ A French dictation learning app for pupils, targeting iPhone and iPad. The teach
 - Intended for teachers to assess handwriting neatness alongside spelling correctness
 - Not shown for lists that have only been practised in typed mode
 
-- Toolbar: **⚙ Settings** (top-left), **+ Add New List** (top-right)
+- Toolbar: **⚙ Settings** (top-left), **+ Add New List** (top-right). When the learner has at least one star, a compact, non-interactive `⭐ N` total-stars badge sits in the centre of the toolbar between the two buttons; it is hidden entirely while the balance is zero.
 - When the Review Bank is non-empty, an orange **Revisit · N words** banner appears pinned at the bottom; it is hidden entirely when the bank is empty
 - Tapping a card shows a **mode picker** ("Type your answers" / "Write on paper") before starting a session
 - Long-pressing a card shows a context menu with **Details** and **Delete**

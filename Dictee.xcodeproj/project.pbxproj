@@ -17,6 +17,7 @@
 		2D5F82CE0065DEDEEEE5F191 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7722B8088813368835434C02 /* Answer.swift */; };
 		3484C8F3B811D54C1C4F1584 /* RevisitSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0403C6CB36831CA8A6F1033 /* RevisitSessionView.swift */; };
 		4465B88CB147AAD0DFC9EF88 /* ScoreRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CD19E6CD49939F788633C1 /* ScoreRing.swift */; };
+		48E300CD3E97B0F830ED8B7C /* StarBalanceBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EAFFB952DEC235417EBD /* StarBalanceBadge.swift */; };
 		4BD6CFA77AA4CD88A7B0B886 /* DictationRewardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFD06AC5D74B5AF4E6CB8A /* DictationRewardService.swift */; };
 		507BE41C662E436246CFDA5E /* RewardTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72460F46FE218A2CF95743B8 /* RewardTransaction.swift */; };
 		6261EBA5D0EDFE59DB214C54 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6814ED42C59543D2E17618A9 /* SettingsView.swift */; };
@@ -66,6 +67,7 @@
 		6814ED42C59543D2E17618A9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		72460F46FE218A2CF95743B8 /* RewardTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTransaction.swift; sourceTree = "<group>"; };
 		7722B8088813368835434C02 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		7B27EAFFB952DEC235417EBD /* StarBalanceBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarBalanceBadge.swift; sourceTree = "<group>"; };
 		7F3D80FF319FB4E124AA4159 /* SessionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResult.swift; sourceTree = "<group>"; };
 		87160EFC86BEB9D091AA5DBA /* ImportFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFlowView.swift; sourceTree = "<group>"; };
 		884DFD2E2CB78314A5980720 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				D3FFE30FF920EE478E43516E /* HomeView.swift */,
 				DC2828BD4DC4D9631947D3C4 /* NeatnessRing.swift */,
 				F7CD19E6CD49939F788633C1 /* ScoreRing.swift */,
+				7B27EAFFB952DEC235417EBD /* StarBalanceBadge.swift */,
 				A2C5F1F3266B8C11B7552D1C /* WordListCard.swift */,
 			);
 			path = Home;
@@ -364,6 +367,7 @@
 				0D29D17F59A9EA7971D0FC14 /* SessionWord.swift in Sources */,
 				6261EBA5D0EDFE59DB214C54 /* SettingsView.swift in Sources */,
 				C2A635859BC1AE13FEAD8CD2 /* SpeechService.swift in Sources */,
+				48E300CD3E97B0F830ED8B7C /* StarBalanceBadge.swift in Sources */,
 				E214619B6623FCEFD73CF8C6 /* String+Normalization.swift in Sources */,
 				9CF652EBE3A1ABD0228E59E9 /* Word.swift in Sources */,
 				27F150DEB17C64472B5854FF /* WordList.swift in Sources */,
