@@ -9,9 +9,11 @@ struct RewardRule {
     /// Stars required to fill the locked Secret reward bar in Slice 1.
     static let secretRewardThreshold: Int = 50
 
-    /// 0…1 progress toward the secret reward threshold.
-    /// Stub — returns 0 until the implementation lands.
+    /// 0…1 progress toward the secret reward threshold, clamped at the upper end.
+    /// Returns 0 when the threshold is non-positive (defensive — should not happen).
     static func progressFraction(totalStars: Int) -> Double {
-        0
+        guard secretRewardThreshold > 0 else { return 0 }
+        let raw = Double(totalStars) / Double(secretRewardThreshold)
+        return min(1, max(0, raw))
     }
 }
